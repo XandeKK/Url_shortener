@@ -10,12 +10,6 @@ class Url < ApplicationRecord
 
   validates :expiration_time, presence: true
 
-  def get_url_shortener
-    if self.expiration_time < DateTime
-      self.update_shortener
-    end
-  end
-
   def update_shortener
     loop do
       self.shortener = SecureRandom.alphanumeric(8)

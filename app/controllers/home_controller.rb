@@ -21,6 +21,19 @@ class HomeController < ApplicationController
     end
   end
 
+  def redirect
+    @url = Url.find_by(shortener: params[:id])
+    if @url
+      if @url.expiration_time > DateTime.now
+        redirect_to @url.link, allow_other_host: true
+      else
+        render "home/expiration", layout: false, status: 404
+      end
+    else
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
+  end
+
   private
 
   def url_params
