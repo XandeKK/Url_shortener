@@ -16,7 +16,7 @@ instagram:
   expiration_time: <%= 1.days.ago %>
 
 gmail:
-  link: https://mail.google.com/
+  link: https://mail.google.com
   shortener: <%= SecureRandom.alphanumeric(8) %>
   expiration_time: <%= 1.days.after %>
 
